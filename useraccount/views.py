@@ -5,6 +5,11 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 
 
+def home(request):
+    context = {'title':'Home'}
+    return render(request, "home.html", context)
+
+    
 def login_view(request):
     form = AuthenticationForm(request.POST or None)
     if request.POST:

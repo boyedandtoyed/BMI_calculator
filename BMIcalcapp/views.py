@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from BMIcalcapp.models import BMI
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def bmi_data_entry(request):
     context = {'title': "Weight | Height | BMI"}
     return render(request, "form.html", context)
 
-
+@login_required
 def bmi_calculator(request):
     try: BMI =  round(float(request.GET['weight']) / (float(request.GET['height']))**2, 3)
     except: return HttpResponse("Please Enter Values Properly!")
