@@ -4,31 +4,34 @@
 
 <style>
     body{
-        min-height: 100vh;
+        min-height: 120vh;
         display: flex;
         background-color:rgba(200, 0, 200, 0.7);
         color:rgb(255, 238, 0);
+        flex-wrap: wrap;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
     }
+   
     a{
         display: block;
         height:70px;
         width:200px;
         margin: 5px;
         line-height:70px;       
-         text-align: center;
-         text-decoration:none;
-font-size:large;
-font-family: cursive;
-        justify-content: center;
+        text-align: center;
+        text-decoration:none;
+        font-size:large;
+        font-family: cursive;
         padding: 5px;
         background-color: pink;
 
     }
     a:hover{
         background-color: rgba(255, 0, 0, 0.39);
+	transform: translateX(-10%);
     }
     a:focus{
         display: block;
@@ -36,10 +39,11 @@ font-family: cursive;
         border-radius: 50%;
         color:cyan;
         background-color: red;
-        transform: scale(20) ;
+        transform: scale(20);
         transition: transform .3s linear;
         position: absolute;
     }
+
 </style>
 
 

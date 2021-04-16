@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 def home(request):
@@ -31,3 +31,6 @@ def register_view(request):
     context = {'form':form, 'title':'Register Form'}
     return render(request, 'register.html', context)
         
+def logout_view(request):
+   logout(request)
+   return HttpResponseRedirect("/")
