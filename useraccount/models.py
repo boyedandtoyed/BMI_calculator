@@ -4,9 +4,8 @@ from django.db import models
 # Create your models here.
 
 # alpha = RegexValidator(r'^[a-zA-Z]*$', 'Only alphabetical characters are allowed.')
+# name = models.CharField(max_length=150, required=True, validators=[alpha])
 
-
-    # name = models.CharField(max_length=150, required=True, validators=[alpha])
 
 class UserModel(models.Model):
     name = models.CharField(max_length=150)

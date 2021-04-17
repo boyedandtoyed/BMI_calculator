@@ -6,7 +6,6 @@ from django.core.exceptions import ValidationError
 class CustomCreationForm(UserCreationForm):
     email =  forms.EmailField()
 
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password1'].help_text = 'Your password must be 10 characters long, and \n and must not be all alpha numeric'
