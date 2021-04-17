@@ -13,12 +13,13 @@
 			height: 50px;
                         width: 200px;
 			top: 20px;
-			left: 20px;
+			right: 20px;
 			margin: 5px;
 			padding: 2px;
 			text-decoration:none;
                         background: red;
 			text-align:center;
+			line-height:200%;
                           }
         </style>         
 
@@ -29,11 +30,16 @@
 </head>
 
 <body>
-    <a href="{% url 'user:logout' %}" id="logout" > Logout </a>
+    <a href="{% url 'user:logout' %}" id="logout" onclick="display_none();"> Logout </a>
     {% block content %}
     {% endblock content %}
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<script>
+	function display_none(){
+document.querySelector("#logout").style.display="none";
+}
+ </script>
 </body>
 </html>

@@ -3,6 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
+from useraccount.forms import CustomCreationForm
 
 
 def home(request):
@@ -24,7 +25,7 @@ def login_view(request):
 
 
 def register_view(request):
-    form = UserCreationForm(request.POST or None)
+    form = CustomCreationForm(request.POST or None)
     if form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('user:login'))

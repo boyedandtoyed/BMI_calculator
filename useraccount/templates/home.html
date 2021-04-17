@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block style %}
+
 
 <style>
     body{
@@ -12,7 +14,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
+	background: url('{% static 'bmi.jpg' %}');
+        background-size: cover;
+        background-postion: center;
     }
    
     a{

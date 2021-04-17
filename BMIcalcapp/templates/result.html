@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block style %}
+
+<style>
+    body{
+        min-height: 100vh;
+        display: flex;
+        background-color:rgba(200, 0, 200, 0.7);
+        color:rgb(255, 238, 0);
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+{% if result == 'overweight' %}
+	background: url('{% static 'overweight.jpg' %}');
+	--p-back-color:red;
+{% elif result == 'normal' %}
+	background: url('{% static 'normalweight.jpg' %}');
+	--p-back-color:green;
+{% elif result == 'underweight' %}
+	background: url('{% static 'underweight.jpg' %}');
+	--p-back-color: orange;
+{% elif result == 'obese' %}
+	background: url('{% static 'obese.jpg' %}');
+	--p-back-color:brown;
+{% endif %}
+        background-size: 100vw 100vh;
+ 	      background-repeat:no-repeat;
+        background-postion: center;
+    }
+p{
+  font-size:1.5rem;
+  color: white;
+  background-color: var(--p-back-color);
+  font-family:cursive;
+  max-width:700px;
+  opacity: 0.7;
+  }
+</style>
+
+
+{% endblock style %}
+
+
+{% block content %}
+
+<p>{{message}}</p>
+{% if result != 'normal' %}
+<p>Your BMI needs to be between 18.5 and 25 to be in you perfect physic.
+ Try to be fit and healthy.</p>
+{% else %}
+<p> Although you're in the perfect shape and size. You maybe unhealthy due to
+ lifestyle. Keep your strong physic consistent. </p>
+{% endif %}
+
+
+{% endblock content %}
