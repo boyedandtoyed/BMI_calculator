@@ -14,7 +14,11 @@ label{
     font-weight:bolder;
     display:block;
     color:red;
+<<<<<<< HEAD
     margin: 2px 2px 2px 2px;
+=======
+    margin: 5px 5px 5px 5px;
+>>>>>>> e3fe231 (height bug correction)
     text-align: center;
    
 }
@@ -24,7 +28,11 @@ input, input:focus{
     color: brown;
     outline: none;
     padding: 3px;
+<<<<<<< HEAD
     margin: 2px auto 2px auto;
+=======
+    margin: 5px 5px 5px 5px;
+>>>>>>> e3fe231 (height bug correction)
     font-weight:bolder;
     display:block;
     justify-self: center;
@@ -76,12 +84,25 @@ a:focus{
 {% endblock style %}
 
 {% block content %}
+<<<<<<< HEAD
 <form method="POST">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" name="register" value="Register">
     </form>
     
+=======
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+{{ form.non_field_errors }}
+    {% for field in form %}
+   {{ field.errors }}
+   {{ field.label_tag }} 
+   {{ field }}
+    {% endfor %}
+    <input type="submit" value="Register"/>
+</form>
+>>>>>>> e3fe231 (height bug correction)
     <label for="login">Already a user?</label>
     <a href="{% url 'user:login' %}" id="login"> Login </a> 
     

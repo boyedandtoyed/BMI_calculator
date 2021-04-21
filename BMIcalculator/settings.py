@@ -108,7 +108,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+<<<<<<< HEAD
 TIME_ZONE = 'UTC'
+=======
+TIME_ZONE = 'Asia/Kathmandu'
+>>>>>>> e3fe231 (height bug correction)
 
 USE_I18N = True
 
