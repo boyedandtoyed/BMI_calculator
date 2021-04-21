@@ -16,7 +16,11 @@
         align-items: center;
 {% if result == 'overweight' %}
 	background: url('{% static 'overweight.jpg' %}');
+<<<<<<< HEAD
 	--p-back-color:red;
+=======
+	--p-back-color:blue;
+>>>>>>> e3fe231 (height bug correction)
 {% elif result == 'normal' %}
 	background: url('{% static 'normalweight.jpg' %}');
 	--p-back-color:green;
@@ -25,7 +29,11 @@
 	--p-back-color: orange;
 {% elif result == 'obese' %}
 	background: url('{% static 'obese.jpg' %}');
+<<<<<<< HEAD
 	--p-back-color:brown;
+=======
+	--p-back-color:red;
+>>>>>>> e3fe231 (height bug correction)
 {% endif %}
         background-size: 100vw 100vh;
  	      background-repeat:no-repeat;
@@ -35,10 +43,51 @@ p{
   font-size:1.5rem;
   color: white;
   background-color: var(--p-back-color);
+<<<<<<< HEAD
   font-family:cursive;
   max-width:700px;
   opacity: 0.7;
   }
+=======
+  text-align: center;
+  font-family:cursive;
+  height:max-content;
+  width: 80vw;
+  opacity: 0.7;
+  
+  }
+  input[name="save"]{
+    text-decoration: none;
+    width:150px;
+    height:40px;
+    border: 2px dotted white;
+    background-color:var(--p-back-color);
+    text-align:center;
+    line-height: 40px;
+    color:white;
+  }
+  a#send{
+    position:absolute;
+    left:30px;
+    top:30px;
+    color:white;
+    font-size:1.5rem;
+    text-decoration: none;
+    height: 50px;
+    width:250px;
+    outline: none;
+    background-color: rgb(248, 74, 106);
+    text-align:center;
+    line-height: 50px;
+    margin: 5px 0 0 0;
+    
+}
+ a#send:hover{
+	color:red;
+	
+	background-color: black;
+}
+>>>>>>> e3fe231 (height bug correction)
 </style>
 
 
@@ -47,6 +96,7 @@ p{
 
 {% block content %}
 
+<<<<<<< HEAD
 <p>{{message}}</p>
 {% if result != 'normal' %}
 <p>Your BMI needs to be between 18.5 and 25 to be in you perfect physic.
@@ -58,3 +108,37 @@ p{
 
 
 {% endblock content %}
+=======
+<p>{{message}}
+</br>
+{% if result != 'normal' %}
+Your BMI needs to be between 18.5 and 25 to be in you perfect physic.
+ Try to be fit and healthy.
+{% else %}
+Although you're in the perfect shape and size. You maybe unhealthy due to
+ lifestyle. Keep your strong physic consistent.  
+{% endif %}
+</p>
+
+
+<form action="{% url 'BMIcalculator:save' %}" method="GET">
+  <input type="hidden" name="BMI_value" value="{{BMI}}">
+  <input type="hidden" name="height" value="{{height}}">
+  <input type="hidden" name="length_unit" value="{{length_unit}}">
+  <input type="hidden" name="weight" value="{{weight}}">
+  <input type="hidden" name="weight_unit" value="{{weight_unit}}">
+
+
+<input type="submit" value="SAVE MY BMI" name="save">
+</form>
+
+<a href='{% url 'user:send-suggestions' %} id="send" > Send Suggestions in your Email </a>
+
+{% endblock content %}
+
+
+
+{% block suggestions %}
+
+{% endblock suggestions %}
+>>>>>>> e3fe231 (height bug correction)
