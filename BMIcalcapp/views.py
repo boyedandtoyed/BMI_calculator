@@ -1,42 +1,15 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponse, HttpResponseRedirect
-<<<<<<< HEAD
-from BMIcalcapp.models import BMI
-from django.contrib.auth.decorators import login_required
-=======
 from django.contrib.auth.decorators import login_required
 # from BMIcalcapp.models import BMI
 from django.contrib.auth.models import User
 from useraccount.models import UserModel
->>>>>>> e3fe231 (height bug correction)
 
 @login_required
 def bmi_data_entry(request):
     context = {'title': "Weight | Height | BMI"}
     return render(request, "form.html", context)
 
-<<<<<<< HEAD
-@login_required
-def bmi_calculator(request):
-    try: BMI =  round(float(request.GET['weight']) / (float(request.GET['height']))**2, 3)
-    except: return HttpResponseRedirect(reverse('BMIcalculator:data_entry'))
-	
-    if 18.5 < BMI < 25: 
-        message = f"Your BMI: {BMI} is in normal range, until now"
-        result="normal"
-    elif 25 <= BMI < 30: 
-        message = f"Your BMI: {BMI} shows you're overweight, bring more exercise to your routine"
-        result = "overweight"
-    elif BMI <= 18.5: 
-        message = f"Your BMI: {BMI} shows you're underweight, eat more nutritious food"
-        result = "underweight"
-    elif BMI >= 30:
-        message = f"Your BMI: {BMI} shows your obesity level is high, consider going to gym."
-        result = "obese"
-
-    context = {'title':'YOUR BMI RESULT', 'result': result, 'BMI': BMI, "message":message}
-
-    return render(request, 'result.html', context)
 
 
 def meterify(request):
@@ -65,20 +38,20 @@ def bmi_calculator(request):
     if 18.5 < BMI < 25: 
         message = f"Your BMI: {BMI} is in normal range, until now"
         result="normal"
-        document = "result.html"
+        document = "suggestions/normal.html"
     elif 25 <= BMI < 30: 
         message = f"Your BMI: {BMI} shows you're overweight, bring more exercise to your routine"
         result = "overweight"
-        document = "result.html"
+        document = "suggestions/overweight.html"
     elif BMI <= 18.5: 
         message = f"Your BMI: {BMI} shows you're underweight, eat more nutritious food"
         result = "underweight"
-        document = "result.html"
+        document = "suggestions/underweight.html"
     elif BMI >= 30:
         message = f"Your BMI: {BMI} shows your obesity level is high, consider going to gym."
         result = "obese"
-        document = "result.html"
-    context = {'title':'BMI and Suggestions',
+        document = "suggestions/obese.html"
+    context = {'title': result.title() + ' BMI and Suggestions',
                'result': result, 
                'BMI': BMI, 
                'message':message, 
@@ -95,9 +68,9 @@ def bmi_calculator(request):
 @login_required
 def save_data(request):
     # print(request.GET)
-    BMI_value = request.GET['BMI_value']
-    height = float(request.GET['height'])  
-    weight = float(request.GET['weight'])
+    BMI_value = request.POST['BMI_value']
+    height = float(request.POST['height'])  
+    weight = float(request.POST['weight'])
     # print("hey don't get confused", request.user, "id------", request.user.pk, (User.objects.filter(pk=2)))
     user = UserModel.objects.filter(user=request.user)[0]
 
@@ -120,13 +93,10 @@ def delete_data(request):
 
 @login_required
 def dashboard(request):
-    print(request.user.email, "is .............\\\\\\\\\\\\\\.fs.f.gf.s.egf.............................")
     user = UserModel.objects.filter(user=request.user)[0]
     if not user.email:
         user.email = request.user.email
         user.save()
-    print(user.email, "is .............\\\\\\\\\\\\\\.fs.f.gf.s.egf.............................")
     return render(request, 'dashboard.html', context={'user':user, 'title':"DASHBOARD"})
->>>>>>> e3fe231 (height bug correction)
 
 

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    body{
+        display:flex;
+        align-items:center;
+        justify-content: center;
+        font-family:cursive;
+   /* }
+legend{
+    font-size: 2rem;
+    text-align: center;
+}
+
+form{
+    border: 3px solid black;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    width:65vw;
+    height: 80vh; 
+
+}
+input{
+    width: 60%;
+    height: 40px;
+    font-size: 1rem;
+    
+} */
+
+
+</style>
+
+
+{% endblock style %}
+
+
+{% block content %}
+
+<form action="{% url 'user:confirm_email' %}" method="post">
+
+    <legend>Enter the confirmation code</legend>
+    <label for="confirm code">Enter Code that has been sent to your email that startswith {{startswith}}</label>
+    <input type="text" name="confirm_value" placeholder="Enter the confirmation code">
+
+</form>
+
+<a href="{% url 'user:' %}"> Confirm ema</a>
+
+
+{% endblock content %}

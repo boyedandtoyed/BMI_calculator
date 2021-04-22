@@ -1,15 +1,13 @@
-<<<<<<< HEAD
 from django.db import models
 
 
-class BMI(models.Model):
-    weight = models.IntegerField(null=True, blank=True)
-    height = models.IntegerField(null=True, blank=True)
-    currentBMI = models.IntegerField(null=True, blank=True)
+# class BMI(models.Model):
+#     weight = models.IntegerField(null=True, blank=True)
+#     height = models.IntegerField(null=True, blank=True)
+#     currentBMI = models.IntegerField(null=True, blank=True)
 
-    def __str__(self):
-        return self.weight
-=======
+#     def __str__(self):
+#         return self.weight
 # from django.db import models
 # from useraccount.models import UserModel
 # from django.dispatch import receiver
@@ -41,4 +39,3 @@ class BMI(models.Model):
 
     
     
->>>>>>> e3fe231 (height bug correction)

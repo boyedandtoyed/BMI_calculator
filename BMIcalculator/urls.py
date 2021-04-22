@@ -6,8 +6,10 @@ from useraccount.views import home
 app_name = "project"
 
 urlpatterns = [
+    path('', home, name="home"),
     path('admin/', admin.site.urls),
     path('bmi/', include("BMIcalcapp.urls", namespace="BMIcalculator")),
     path('user/', include('useraccount.urls', namespace="user")),
-    path('', home, name="home")
+    path('verification/', include('verify_email.urls')),	
+
 ]
