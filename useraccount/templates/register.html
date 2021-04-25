@@ -70,12 +70,20 @@ a:focus{
     transition: transform .3s linear;
     position: absolute;
 }
+h1, h2{
+    color:black;
+    border:2px dotted white;
+    padding: 5px;
+    margin: 5px;
+}
 </style>
 
 
 {% endblock style %}
 
 {% block content %}
+<h1>You must verify your email to login in our site.</h1>
+<h2>A verfication link will be sent to your email right after you press register.</h2>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 {{ form.non_field_errors }}

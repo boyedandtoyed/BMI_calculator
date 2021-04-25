@@ -38,7 +38,6 @@ def register_view(request):
     if form.is_valid():
         form.save()
         send_verification_email(request, form)
-
         return HttpResponseRedirect(reverse('user:login'))
     context = {'form':form, 'title':'Register Form'}
     return render(request, 'register.html', context)
@@ -91,7 +90,7 @@ def send_suggestions(request):
         height = float(request.POST['height'])  
         weight = float(request.POST['weight'])
         result = request.POST.get('result')
-        document = 'suggestions/' + result + ".html"
+        document = 'suggestions/' + result + ".html" ####eg suggestions/obese.html
 
         if result=="normal": message = f"Your BMI: {BMI_value} is in normal range, until now"
         elif result=="overweight": message = f"Your BMI: {BMI_value} shows you're overweight, bring more exercise to your routine"
@@ -114,7 +113,6 @@ def send_suggestions(request):
                "weight":weight,
                "length_unit":request.POST['length_unit'],
                "weight_unit":request.POST['weight_unit']
-               
         }
         html_message = render_to_string(document, context)
         send_mail(subject, message, from_email, recipient_list, html_message=html_message, fail_silently=False)
