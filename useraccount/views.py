@@ -54,8 +54,11 @@ def update_view(request):
     
 
 def logout_view(request):
-   logout(request)
-   return HttpResponseRedirect(reverse('home'))
+   print(request.get_raw_uri(), "i .............................................", request.user)
+   if str(request.user) != "AnonymousUser":
+       logout(request)
+       return HttpResponseRedirect(reverse('home'))
+   return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 # @login_required
 # def send_confirmation(request):
