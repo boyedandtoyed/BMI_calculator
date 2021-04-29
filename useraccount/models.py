@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from BMIcalcapp.models import Suggestions
 # from django.core.validators import RegexValidator
 
 # alpha = RegexValidator(r'^[a-zA-Z]*$', 'Only alphabetical characters are allowed.')

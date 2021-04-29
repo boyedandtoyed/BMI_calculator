@@ -1,5 +1,8 @@
 from django.db import models
 
+class Suggestions(models.Model):
+    bmi_range = models.CharField(max_length=15) ###included in the field as range1-range2
+    suggestions = models.TextField(null=True, blank=True)
 
 # class BMI(models.Model):
 #     weight = models.IntegerField(null=True, blank=True)
@@ -37,5 +40,5 @@ from django.db import models
 # #     overweight_condition = models.TextField(null=True, blank=True)
 # #     obese_condition = models.TextField(null=True, blank=True)
 
-    
+
     
