@@ -2,8 +2,8 @@ from django.db import models
 
 class State(models.Model):
     state = models.CharField(max_length=20, null=True, blank=True)
-    lower_value = models.IntegerField(null=True, blank=True)
-    higher_value = models.IntegerField(null=True, blank=True)
+    lower_value = models.FloatField(null=True, blank=True)
+    higher_value = models.FloatField(null=True, blank=True)
     suggestions = models.TextField(null=True, blank=True)
 
 # class BMI(models.Model):
