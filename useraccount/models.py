@@ -11,6 +11,7 @@ from BMIcalcapp.models import Suggestions
 
 class UserModel(models.Model):
 
+    suggestions = models.ForeignKey(Suggestions, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100) 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     contact = models.IntegerField(null=True, blank=True)
