@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from BMIcalcapp.models import Suggestions
+from BMIcalcapp.models import State
 # from django.core.validators import RegexValidator
 
 # alpha = RegexValidator(r'^[a-zA-Z]*$', 'Only alphabetical characters are allowed.')
@@ -11,7 +11,7 @@ from BMIcalcapp.models import Suggestions
 
 class UserModel(models.Model):
 
-    suggestions = models.ForeignKey(Suggestions, on_delete=models.CASCADE, null=True, blank=True)
+    state = models.ForeignKey(State, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100) 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     contact = models.IntegerField(null=True, blank=True)

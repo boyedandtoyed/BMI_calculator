@@ -39,7 +39,7 @@ class CustomUpdateForm(forms.ModelForm):
     class Meta:
             model = UserModel
             include = "__all__"
-            exclude= ('date', 'updated_time', 'bmi', 'height', 'weight','user', 'email_confirmed')
+            exclude= ('date', 'updated_time', 'bmi', 'height', 'weight','user', 'email_confirmed','suggestions')
 	
 
 	

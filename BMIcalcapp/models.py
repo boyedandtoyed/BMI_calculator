@@ -1,7 +1,9 @@
 from django.db import models
 
-class Suggestions(models.Model):
-    bmi_range = models.CharField(max_length=15) ###included in the field as range1-range2
+class State(models.Model):
+    state = models.CharField(max_length=20, null=True, blank=True)
+    lower_value = models.IntegerField(null=True, blank=True)
+    higher_value = models.IntegerField(null=True, blank=True)
     suggestions = models.TextField(null=True, blank=True)
 
 # class BMI(models.Model):
