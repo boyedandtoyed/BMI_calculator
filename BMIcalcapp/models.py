@@ -4,8 +4,11 @@ class State(models.Model):
     state = models.CharField(max_length=20, null=True, blank=True)
     lower_value = models.FloatField(null=True, blank=True)
     higher_value = models.FloatField(null=True, blank=True)
-    suggestions = models.TextField(null=True, blank=True)
+    suggestions = models.TextField(null=True, blank=True)  
 
+    def __str__(self):
+        return str(self.lower_value) + " to " + str(self.higher_value)
+    
 # class BMI(models.Model):
 #     weight = models.IntegerField(null=True, blank=True)
 #     height = models.IntegerField(null=True, blank=True)

@@ -4,12 +4,12 @@ from django.contrib.auth.decorators import login_required
 # from BMIcalcapp.models import BMI
 from django.contrib.auth.models import User
 from useraccount.models import UserModel
+from BMIcalcapp.models import State
 
 @login_required
 def bmi_data_entry(request):
     context = {'title': "Weight | Height | BMI"}
     return render(request, "form.html", context)
-
 
 
 def meterify(request):
@@ -27,6 +27,12 @@ def kilofy(request):
     if unit == 'Pound': return round((weight *0.453592), 2)
     else: return round(weight, 2)
 
+def get_status(BMI):
+    for state in State.objects.all():
+        current_state_high_value = state.higher_value
+        current_state_low_value = state.lower_value
+        if current_state_low_value < BMI <= current_state_high_value:
+            return state
 
 @login_required
 def bmi_calculator(request):
@@ -34,23 +40,11 @@ def bmi_calculator(request):
     height = meterify(request)
     try: BMI =  round((weight / ((height)**2)), 2)
     except: return HttpResponseRedirect(reverse('BMIcalculator:data_entry'))
-    
-    if 18.5 < BMI < 25: 
-        message = f"Your BMI: {BMI} is in normal range, until now"
-        result="normal"
-        document = "suggestions/normal.html"
-    elif 25 <= BMI < 30: 
-        message = f"Your BMI: {BMI} shows you're overweight, bring more exercise to your routine"
-        result = "overweight"
-        document = "suggestions/overweight.html"
-    elif BMI <= 18.5: 
-        message = f"Your BMI: {BMI} shows you're underweight, eat more nutritious food"
-        result = "underweight"
-        document = "suggestions/underweight.html"
-    elif BMI >= 30:
-        message = f"Your BMI: {BMI} shows your obesity level is high, consider going to gym."
-        result = "obese"
-        document = "suggestions/obese.html"
+    state =  get_status(BMI)
+    result = state.state
+    message = state.suggestions
+    document = f"suggestions/{result}.html"
+
     context = {'title': result.title() + ' BMI and Suggestions',
                'result': result, 
                'BMI': BMI, 
@@ -68,12 +62,12 @@ def bmi_calculator(request):
 @login_required
 def save_data(request):
     # print(request.GET)
-    BMI_value = request.POST['BMI_value']
+    BMI_value = float(request.POST['BMI_value'])
     height = float(request.POST['height'])  
     weight = float(request.POST['weight'])
     # print("hey don't get confused", request.user, "id------", request.user.pk, (User.objects.filter(pk=2)))
     user = UserModel.objects.filter(user=request.user)[0]
-
+    user.state = get_status(BMI_value)
     user.bmi = round(float(BMI_value), 2)
     user.height = round(float(height), 2)
     user.weight = round(float(weight), 2)

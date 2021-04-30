@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 import random
-from BMIcalcapp.views import save_data
+from BMIcalcapp.views import save_data, get_status
 from verify_email.email_handler import send_verification_email
 
 
@@ -41,6 +41,14 @@ def register_view(request):
         return HttpResponseRedirect(reverse('user:login'))
     context = {'form':form, 'title':'Register Form'}
     return render(request, 'register.html', context)
+    
+
+def logout_view(request):
+   if str(request.user) != "AnonymousUser":
+       logout(request)
+       return HttpResponseRedirect(reverse('home'))
+   return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 @login_required        
 def update_view(request):
@@ -51,14 +59,42 @@ def update_view(request):
         return HttpResponseRedirect(reverse('BMIcalculator:dashboard'))
     context = {'form':form, 'title':'Update Form'}
     return render(request, 'register.html', context)
-    
 
-def logout_view(request):
-   print(request.get_raw_uri(), "i .............................................", request.user)
-   if str(request.user) != "AnonymousUser":
-       logout(request)
-       return HttpResponseRedirect(reverse('home'))
-   return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+@login_required
+def send_suggestions(request):
+    save_data(request)
+    
+    email =  request.user.email
+    if request.user.is_active:
+        BMI_value = float(request.POST['BMI_value'])
+        height = float(request.POST['height'])  
+        weight = float(request.POST['weight'])
+        subject = "Suggestions Page"
+        from_email = 'bnodtwari1112@gmail.com'
+        recipient_list = [
+            email,
+        ]
+        state =  get_status(BMI_value)
+        result = state.state
+        message = state.suggestions
+        document = f"suggestions/{result}.html"
+
+        context = {'title': result.title() + ' BMI and Suggestions',
+               'result': result, 
+               'BMI': BMI_value, 
+               'message':message, 
+               "height":height, 
+               "weight":weight,
+               "length_unit":height,
+               "weight_unit":weight,
+               }
+        html_message = render_to_string(document, context)
+        send_mail(subject, message, from_email, recipient_list, html_message=html_message, fail_silently=False)
+        return HttpResponseRedirect(reverse('BMIcalculator:dashboard'))
+    
+    return HttpResponseRedirect(reverse('BMIcalculator:dashboard'))
+
+
 
 # @login_required
 # def send_confirmation(request):
@@ -81,45 +117,4 @@ def logout_view(request):
 #     else:    
 #         context = {'title':'CONFIRM EMAIL', "startswith": email[0:4]}
 #         return render(request, 'email_confirmation', )
-    
-@login_required
-def send_suggestions(request):
-    save_data(request)
-
-    current_user = User.objects.filter(id=request.user.id)[0]
-    email =  current_user.email
-    if current_user.is_active:
-        BMI_value = request.POST['BMI_value']
-        height = float(request.POST['height'])  
-        weight = float(request.POST['weight'])
-        result = request.POST.get('result')
-        document = 'suggestions/' + result + ".html" ####eg suggestions/obese.html
-
-        if result=="normal": message = f"Your BMI: {BMI_value} is in normal range, until now"
-        elif result=="overweight": message = f"Your BMI: {BMI_value} shows you're overweight, bring more exercise to your routine"
-        elif result =="underweight": message = f"Your BMI: {BMI_value} shows you're underweight, eat more nutritious food"
-        elif result=="obese":message = f"Your BMI: {BMI_value} shows your obesity level is high, consider going to gym."
-        result = "obese"
-        document = "suggestions/obese.html"
-
-        subject = "Suggestions Page"
-        from_email = 'bnodtwari1112@gmail.com'
-        recipient_list = [
-            email,
-        ]
-        context = {
-            'title': result.title() + ' BMI and Suggestions',
-               'result': result, 
-               'BMI': BMI_value, 
-               'message':message, 
-               "height":height, 
-               "weight":weight,
-               "length_unit":request.POST['length_unit'],
-               "weight_unit":request.POST['weight_unit']
-        }
-        html_message = render_to_string(document, context)
-        send_mail(subject, message, from_email, recipient_list, html_message=html_message, fail_silently=False)
-        return HttpResponseRedirect(reverse('BMIcalculator:dashboard'))
-    
-    return HttpResponseRedirect(reverse('BMIcalculator:dashboard'))
-    
+        
