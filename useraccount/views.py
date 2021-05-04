@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from useraccount.forms import CustomCreationForm, CustomUpdateForm
+from useraccount.forms import CustomCreationForm, CustomUpdateForm, CustomLoginForm
 from django.contrib.auth.models import User
 from  useraccount.models import UserModel
 from django.http import HttpResponseRedirect
@@ -21,7 +21,8 @@ def home(request):
 
     
 def login_view(request):
-    form = AuthenticationForm(request.POST or None)
+    form = CustomLoginForm(request.POST or None)
+  
     if request.POST:
         username = request.POST.get('username')
         password = request.POST.get('password')

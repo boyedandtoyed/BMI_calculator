@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from django.core.exceptions import ValidationError
 from useraccount.models import UserModel
@@ -42,4 +42,14 @@ class CustomUpdateForm(forms.ModelForm):
             exclude= ('date', 'updated_time', 'bmi', 'height', 'weight','user', 'email_confirmed','suggestions')
 	
 
-	
+class CustomLoginForm(AuthenticationForm):
+     
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['placeholder'] = 'Username'
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['password'].widget.attrs['placeholder'] = 'Password'
+        self.fields['password'].widget.attrs['class'] = 'form-control'
+    
+    
+    

@@ -4,59 +4,17 @@
 {% block style %}
 
 
-<style>
-    body{
-        min-height: 120vh;
-        display: flex;
-        background-color:rgba(200, 0, 200, 0.7);
-        color:rgb(255, 238, 0);
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-	background: url('{% static 'bmi.jpg' %}');
-        background-size: cover;
-        background-postion: center;
-    }
-   
-    a{
-        display: block;
-        height:70px;
-        width:200px;
-        margin: 5px;
-        line-height:70px;       
-        text-align: center;
-        text-decoration:none;
-        font-size:large;
-        font-family: cursive;
-        padding: 5px;
-        background-color: pink;
-
-    }
-    a:hover{
-        background-color: rgba(255, 0, 0, 0.39);
-	transform: translateX(-10%);
-    }
-    a:focus{
-        display: block;
-        z-index: 1000;
-        border-radius: 50%;
-        color:cyan;
-        background-color: red;
-        transform: scale(20);
-        transition: transform .3s linear;
-        position: absolute;
-    }
-
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 
 
 {% endblock style %}
               
 {% block content %}
-<a href="{% url 'user:login' %}"> Login </a> 
-<a href="{% url 'user:register' %}"> Register </a> 
-<a href="{% url 'BMIcalculator:data_entry' %}"> Calculate My BMI </a> 
-
+<div id='homeform'>
+    
+<a href="{% url 'user:login' %}" id="login"> Login </a> 
+<a href="{% url 'user:register' %}" id="register"> Register </a> 
+<a href="{% url 'BMIcalculator:data_entry' %}" id="calculator"> Calculate My BMI </a> 
+</div>
 
 {% endblock content %}

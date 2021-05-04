@@ -1,0 +1,45 @@
+/* for base.html
+-----------------------------------------------------------------
+-------------------------
+---------- */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: all 0.2s linear;
+  font-family: cursive;
+}
+
+#logoutform {
+  position: absolute;
+  width: max-content;
+  top: 10px;
+  right: 10px;
+  height: max-content;
+}
+input#logout {
+  height: 50px;
+  width: 150px;
+  margin: 5px;
+  padding: 2px;
+  text-decoration: none;
+  background: red;
+  text-align: center;
+  line-height: 50px;
+  font-family: cursive;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+input#logout:hover {
+  color: red;
+  background-color: black;
+}
+
+li::marker,
+li {
+  font-weight: bolder;
+  color: red;
+}
+
+

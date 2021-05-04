@@ -1,0 +1,74 @@
+body{
+    min-height:100vh;
+    background:rgba(150, 150, 0, 1);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+label{
+    font-weight:bolder;
+    display:block;
+    color:red;
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+   
+}
+input, input:focus{
+    height: 40px;
+    width:250px;
+    color: brown;
+    outline: none;
+    padding: 3px;
+    margin: 5px 5px 5px 5px;
+    font-weight:bolder;
+    display:block;
+    justify-self: center;
+
+}
+.helptext{
+    font-weight:bolder;
+    color:red;
+    margin: 2px 2px 2px 2px;
+    text-align: center;
+}
+form#register{
+    background:rgb(236, 132, 62);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+form#register a{
+    height:50px;
+    width:200px;
+    margin: 5px;
+    line-height:50px;       
+   text-align: center;
+    text-decoration:none;
+    font-size:large;
+    font-family: cursive;
+    justify-content: center;
+    padding: 5px;
+    background-color: pink;
+
+}
+form#register a:hover{
+    background-color: rgba(255, 0, 0, 0.39);
+}
+form#register a:focus{
+    z-index: 1000;
+    border-radius: 50%;
+    color:cyan;
+    background-color: red;
+    transform: scale(20) ;
+    transition: transform .3s linear;
+    position: absolute;
+}
+h1, h2{
+    color:black;
+    border:2px dotted white;
+    padding: 5px;
+    margin: 5px;
+}
