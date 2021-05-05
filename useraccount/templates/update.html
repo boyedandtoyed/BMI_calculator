@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% load static %} {% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}" />
+
+{% endblock style %}
+{% block content %}
+
+<div class="container">
+
+    <form method="POST" class="form-horizontal" role="form">
+        <span id="message">You must verify your email to login in our site.
+            A verfication link will be sent to your email right after you press {{title}}.
+        </span>
+        {% csrf_token %}
+
+        <h1>{{title}}</h1>
+
+        <div class="form-group">
+
+            <label for="contact" class="col-sm-3 control-label">Contact</label>
+            <div class="col-sm-9">
+                {{ form.contact }} {{ form.contact.errors }}
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label for="email" class="col-sm-3 control-label">Email </label>
+            <div class="col-sm-9">
+                {{ form.email }} {{ form.email.errors }}
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="age" class="col-sm-3 control-label">Age </label>
+            <div class="col-sm-9">
+                {{ form.age }}
+            </div>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary btn-block">{{title}}</button>
+        <label for="login">Already a user?</label>
+        <a href="{% url 'user:login' %}" id="login"> Login </a>
+    </form>
+</div>
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+{% endblock content %}

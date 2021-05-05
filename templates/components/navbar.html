@@ -1,26 +1,37 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="position:sticky">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">E commerce</a>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary" >
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="{% url 'home' %}">BMI</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'BMIcalculator:data_entry' %}">Calculate BMI</a>
+        </li>
+      </ul>
+      <form class="d-flex">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+            <a class="nav-link active" href="{% url 'user:logout' %}" id="logout">Logout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'BMIcalculator:data_entry' %}">Entry</a>
+            <a class="nav-link active" href="{% url 'user:login' %}" id="login">Login
+            </a>
           </li>
-         
           <li class="nav-item">
-            <a class="nav-link " href="#"  aria-disabled="true">hey</a>
+            <a class="nav-link active" href="{% url 'user:register' %}" id="register">
+              Register
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'BMIcalculator:dashboard' %}" id="dashboard">
+              See Profile
+            </a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+      </form>
     </div>
-  </nav>
+  </div>
+</nav>

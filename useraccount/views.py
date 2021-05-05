@@ -40,7 +40,7 @@ def register_view(request):
         form.save()
         send_verification_email(request, form)
         return HttpResponseRedirect(reverse('user:login'))
-    context = {'form':form, 'title':'Register Form'}
+    context = {'form':form, 'title':'Register'}
     return render(request, 'register.html', context)
     
 
@@ -56,10 +56,12 @@ def update_view(request):
     user = get_object_or_404(UserModel, user=request.user)
     form = CustomUpdateForm(request.POST or None, instance=user)
     if form.is_valid():
+        # if user.email != request.POST.get('email'):
+        #     send_verification_email(request, form)    
         form.save()
         return HttpResponseRedirect(reverse('BMIcalculator:dashboard'))
-    context = {'form':form, 'title':'Update Form'}
-    return render(request, 'register.html', context)
+    context = {'form':form, 'title':'Update'}
+    return render(request, 'update.html', context)
 
 @login_required
 def send_suggestions(request):

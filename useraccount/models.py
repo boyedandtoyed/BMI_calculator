@@ -12,7 +12,6 @@ from BMIcalcapp.models import State
 class UserModel(models.Model):
 
     state = models.ForeignKey(State, on_delete=models.CASCADE, null=True, blank=True)
-    name = models.CharField(max_length=100) 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     contact = models.IntegerField(null=True, blank=True)
     email = models.EmailField(max_length=100)

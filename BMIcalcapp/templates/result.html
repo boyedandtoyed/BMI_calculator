@@ -3,34 +3,16 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/result.css' %}" />
 
 <style>
-      body{
-          min-height: 100vh;
-          display: flex;
-          background-color:var(--p-back-color);
-          flex-wrap: wrap;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          background-size: 70vw 100vh;
-   	      background-repeat:no-repeat;
-          background-position: center;
-          background-attachment: fixed;
-  {% if result == 'overweight' %}
-  	background-image: url('{% static 'overweight.jpg' %}');
-  	--p-back-color:#0000FF;
-  {% elif result == 'normal' %}
-  	background-image: url('{% static 'normalweight.jpg' %}');
-  	--p-back-color:#00FF00;
-  {% elif result == 'underweight' %}
-  	background-image: url('{% static 'underweight.jpg' %}');
-  	--p-back-color: orange;
-  {% elif result == 'obese' %}
-  	background-image: url('{% static 'obese.jpg' %}');
+  body {
+    background-color: var(--p-back-color);
+    background-size: 70vw 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-image: url('/static/{{state.state}}.jpg');
+    --p-back-color: {{state.color}};
 
-  	--p-back-color:#FF0000;
-  {% endif %}
-
-      }
+  }
 </style>
 
 {% endblock style %} {% block content %}
@@ -63,12 +45,7 @@
   <input type="hidden" name="weight" value="{{weight}}" />
   <input type="hidden" name="weight_unit" value="{{weight_unit}}" />
   <input type="hidden" name="result" value="{{result}}" />
-  <input
-    type="submit"
-    value="Send Suggestions in Email"
-    name="send"
-    id="send"
-  />
+  <input type="submit" value="Send Suggestions in Email" name="send" id="send" />
 </form>
 
 {% endblock content %} {% block suggestions %} {% endblock suggestions %}

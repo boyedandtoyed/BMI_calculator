@@ -30,7 +30,7 @@ form#login{
     align-content: center;
 } */
 
-a#register{
+.card-footer a#register{
     color:white;
     font-size:1.5rem;
     text-decoration: none;
@@ -43,7 +43,7 @@ a#register{
     margin: 5px 0 0 0;
     
 }
-a#register:hover{
+.card-footer a#register:hover{
 	color:red;
 	
 	background-color: black;
@@ -62,7 +62,7 @@ label[for="register"]{
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background: url('https://static-communitytable.parade.com/wp-content/uploads/2014/03/rethink-target-heart-rate-number-ftr.jpg') fixed;
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;

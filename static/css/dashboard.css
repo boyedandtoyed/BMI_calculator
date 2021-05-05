@@ -1,0 +1,84 @@
+body {
+  font-family: cursive;
+  background: url('https://static-communitytable.parade.com/wp-content/uploads/2014/03/rethink-target-heart-rate-number-ftr.jpg') fixed;
+background-size: cover;
+background-repeat: no-repeat;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column; */
+}
+tr,
+th,
+td {
+  margin: 10px;
+  border: 2px solid black;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 10px;
+}
+th {
+  font-size: 2rem;
+  border: 2px solid black;
+}
+table {
+  border: 10px solid pink;
+  border-collapse: collapse;
+  background-color: var(--table-back-color);
+  animation: changecolor 2s alternate linear infinite;
+}
+
+@keyframes changecolor {
+  0% {
+    color: pink;
+  }
+  25% {
+    color: orange;
+  }
+  50% {
+    color: brown;
+  }
+  75% {
+    color: red;
+  }
+  100% {
+    color: black;
+  }
+}
+table:hover > * {
+  animation-play-state: paused;
+  color: black;
+}
+
+form > input {
+  margin: 20px;
+  text-decoration: none;
+  width: 200px;
+  height: 40px;
+  border: 2px dotted white;
+  background-color: black;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+}
+form > input#delete:hover,
+form > input#delete:focus {
+  color: black;
+  background-color: red;
+}
+form > input#update:hover,
+form > input#update:focus {
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 255, 76);
+}
+label {
+  margin: 20px;
+  width: 350px;
+  height: 40px;
+  border: 2px dotted black;
+  background-color: rgb(74, 243, 74);
+  text-align: center;
+  line-height: 40px;
+  color: white;
+}

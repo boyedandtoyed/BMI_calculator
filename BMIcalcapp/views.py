@@ -13,12 +13,25 @@ def bmi_data_entry(request):
 
 
 def meterify(request):
-    height = float(request.GET['height'])
+    height = (request.GET['height'])
     unit = request.GET['length_unit'] 
-    if unit == "centimeter": return round((height * 0.01), 2)
-    elif unit == "foot" : return round((height * 0.3048), 2)
-    elif unit == "inch" : return round((height * 0.0254), 2)
-    else: return round(height, 2)
+    if unit == "centimeter": 
+        height = float(height)
+        return round((height * 0.01), 2)
+    elif unit == "foot" :
+        if height.find(".") == 1:
+            foots_and_inches = height.split(".")
+            foots = float(foots_and_inches[0]) 
+            inches = float(foots_and_inches[1])
+            height = float(foots + (inches/12))
+        else: height = float(height)
+        return round((height * 0.3048), 2)
+    
+    elif unit == "inch" :
+        height = float(height)
+        
+        return round((height * 0.0254), 2)
+    else: return round(float(height), 2)
 
 
 def kilofy(request):
@@ -44,8 +57,10 @@ def bmi_calculator(request):
     result = state.state
     message = state.suggestions
     document = f"suggestions/{result}.html"
+    
 
-    context = {'title': result.title() + ' BMI and Suggestions',
+    context = { 'state':state,
+               'title': result.title() + ' BMI and Suggestions',
                'result': result, 
                'BMI': BMI, 
                'message':message, 

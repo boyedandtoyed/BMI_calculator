@@ -6,7 +6,7 @@
   font-family: cursive;
 }
 
-#logoutform {
+/* #logoutform {
   position: absolute;
   width: max-content;
   top: 10px;
@@ -26,14 +26,17 @@ input#logout {
   font-family: cursive;
   font-size: 1.5rem;
   border-radius: 10px;
-}
-input#logout:hover {
+} */
+a#logout:hover {
   color: red;
   background-color: black;
 }
-
-li::marker,
-li {
-  font-weight: bolder;
-  color: red;
+a#register:hover{
+  color:black;
+  background-color: cyan;
 }
+a#login:hover{
+  color:rgb(193, 35, 207);
+  background-color: rgb(9, 255, 0); 
+}
+

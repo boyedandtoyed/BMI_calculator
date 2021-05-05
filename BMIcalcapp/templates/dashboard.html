@@ -1,138 +1,47 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block style %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/dashboard.css' %}"
+/>
 
-
-{% block style %}
 <style>
-
-    body {
-        font-family: cursive;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        min-height:100vh;
-        flex-direction: column;
-    }
-    tr, th, td{
-        margin:10px;
-        border:2px solid black;
-        font-size:1.5rem;
-        text-align: center;
-        padding:10px;
-
-    }
-    th{
-        font-size: 2rem;
-        border:2px solid black;
-
-    }
-    table{
-        border: 10px solid pink;
-        border-collapse:collapse;
-    
-        animation:changecolor 2s alternate linear infinite;
-    }
-
-    @keyframes changecolor{
-
-        0%{
-            color:pink;
-        }
-        25%{
-            color:orange;
-        }
-        50%{
-            color:brown;
-        }
-        75%{
-            color:red;
-        }
-        100%{
-            color:black;
-        }
-
-    }
-    table:hover>*{
-        animation-play-state: paused;
-        color: black;
-    }
-
-form > input{
-        margin:20px;
-        text-decoration: none;
-        width:200px;
-        height:40px;
-        border: 2px dotted white;
-        background-color: black;
-        text-align:center;
-        line-height: 40px;
-        color:white;
-      }
-form > input#delete:hover, form > input#delete:focus{
-        color:black;
-        background-color:red; 
-    }
-form > input#update:hover, form > input#update:focus{
-        color:rgb(255, 255, 255);
-        background-color:rgb(0, 255, 76); 
-    }
-    label{
-        margin:20px;
-        width:350px;
-        height:40px;
-        border: 2px dotted black;
-        background-color: rgb(74, 243, 74);
-        text-align:center;
-        line-height: 40px;
-        color:white;
-    }
+  *{
+      --table-back-color:{{user.state.color}} ;
+  }
 </style>
-
-
 {% endblock style %}
 
 {% block content %}
 
-
 <label for="table"> Your Current Data </label>
-<table id='table'>
-<tr> 
-        <th>Username</th>
-        <th>Age</th>
-        
-        <th>Height(meter)</th>
-        <th>Weight(kg)</th>
-        <th>BMI</th>   
-        <th>Email</th>
-        <th>Last updated</th>
-</tr>    
-<tr>
-    <td>{{user}}
-    </td>
-    <td>
-        {{user.age}}
-    </td>
-    <td> {{user.height}}
-    </td>
-   
-    <td>{{user.weight}}
-    </td>
-    <td> {{user.bmi}}
-    </td>
-    <td>
-        {{user.email}}
-    </td>
-    <td>
-        {{user.updated_time}}
-    </td>
+<table id="table">
+  <tr>
+    <th>Username</th>
+    <th>Age</th>
 
-</tr>
+    <th>Height(meter)</th>
+    <th>Weight(kg)</th>
+    <th>BMI</th>
+    <th>Email</th>
+    <th>Last updated</th>
+  </tr>
+  <tr>
+    <td>{{user}}</td>
+    <td>{{user.age}}</td>
+    <td>{{user.height}}</td>
 
+    <td>{{user.weight}}</td>
+    <td>{{user.bmi}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.updated_time}}</td>
+  </tr>
 </table>
 
 <form action="{% url 'BMIcalculator:delete' %}">
-    <input type="submit" value="DELETE BMI DATA" id="delete">
+  <input type="submit" value="DELETE BMI DATA" id="delete" />
 </form>
-<form action="{% url 'user:update' %}" >
-    <input type="submit" value="UPDATE MY DATA" id="update">
+<form action="{% url 'user:update' %}">
+  <input type="submit" value="UPDATE MY DATA" id="update" />
 </form>
 {% endblock content %}

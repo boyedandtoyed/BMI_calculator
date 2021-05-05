@@ -7,12 +7,13 @@ body {
   background-size: 60vw auto;
   min-height: 100vh;
   background-repeat: no-repeat;
-  animation: changeBg cubic-bezier(.92,.15,1,1) alternate 10s infinite;
+  animation: changeBg cubic-bezier(0.92, 0.15, 1, 1) 10s infinite;
+  background-color: rgba(0, 0, 0, 0.767);
 }
 
 @keyframes changeBg {
   0% {
-    background-position: 80vw center;
+    background-position: 100vw center;
   }
   /* 25% {
       background-size: 100vw auto;    
@@ -35,14 +36,14 @@ div#homeform {
   top: 50vh;
   left: 50vw;
   display: flex;
-  color: rgb(255, 238, 0);
+  color: rgb(59, 59, 54);
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-a#register,
-a#login,
+/* a#register,
+a#login, */
 a#calculator {
   display: block;
   height: 70px;
@@ -54,16 +55,16 @@ a#calculator {
   font-size: large;
   font-family: cursive;
   padding: 5px;
-  background-color: pink;
+  background-color: rgb(59, 59, 54);
 }
-a#register:hover,
-a#login:hover,
+/* a#register:hover,
+a#login:hover, */
 a#calculator:hover {
   background-color: rgba(255, 0, 0, 0.39);
   transform: translateX(-10%);
 }
-a#register:focus,
-a#login:focus,
+/* a#register:focus,
+a#login:focus, */
 a#calculator:focus {
   display: block;
   z-index: 1000;
@@ -73,4 +74,9 @@ a#calculator:focus {
   transform: scale(20);
   transition: transform 0.3s linear;
   position: absolute;
+}
+label{
+  min-width: fit-content;
+  padding: 3px;
+  
 }
