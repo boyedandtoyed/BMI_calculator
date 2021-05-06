@@ -1,6 +1,6 @@
 # BMI_calculator
 A project for calculating and storing the BMIs of people
-THIS SIMPLE project constitutes the features like 
+THIS SIMPLE project made with python and simple function based view in django constitutes the features like 
 
 email confirmation, 
 send suggestions according to user's BMI, 
