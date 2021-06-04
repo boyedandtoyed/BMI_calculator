@@ -11,9 +11,8 @@ class CustomCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        include = "__all__"
-        exclude = ('user_permissions', 'groups', 'is_superuser', 'last_login', 'first_name', 'last_name', 'is_staff', 'date_joined', 'is_active',
-                   'password')
+        fields = "__all__"
+      
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
